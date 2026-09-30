@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope For Abilities | Empowering Children with Special Needs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        warm: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-border {
+            background: linear-gradient(60deg, #14b8a6, #f59e0b);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(240, 253, 250, 0.95) 0%, rgba(255, 251, 235, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+        }
+        .modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-900 text-brand-100 text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="bg-warm-500 text-slate-900 px-2 py-0.5 rounded-full font-bold text-xs uppercase tracking-wider">Tax Benefit</span>
+        <span>All donations are eligible for 80G Tax Exemption certificates under Indian IT Act.</span>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 to-warm-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">HopeForAbilities</span>
+                    <span class="text-xs font-semibold text-brand-600 tracking-wider uppercase block">Foundation for Special Children</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+                <a href="#about" class="hover:text-brand-600 transition-colors">Our Mission</a>
+                <a href="#programs" class="hover:text-brand-600 transition-colors">Programs</a>
+                <a href="#impact" class="hover:text-brand-600 transition-colors">Impact Stories</a>
+                <a href="#transparency" class="hover:text-brand-600 transition-colors">Transparency</a>
+                <a href="#faq" class="hover:text-brand-600 transition-colors">FAQs</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openDonateModal()" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all duration-200">
+                    <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+                    <span>Donate Now</span>
+                </button>
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 rounded-lg hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="block py-2 text-slate-700 font-medium border-b border-slate-50">Our Mission</a>
+            <a href="#programs" class="block py-2 text-slate-700 font-medium border-b border-slate-50">Programs</a>
+            <a href="#impact" class="block py-2 text-slate-700 font-medium border-b border-slate-50">Impact Stories</a>
+            <a href="#transparency" class="block py-2 text-slate-700 font-medium border-b border-slate-50">Transparency</a>
+            <a href="#faq" class="block py-2 text-slate-700 font-medium border-b border-slate-50">FAQs</a>
+            <button onclick="openDonateModal()" class="w-full mt-3 flex items-center justify-center gap-2 bg-brand-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md">
+                <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+                <span>Donate via Razorpay</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg relative py-16 lg:py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-800 text-xs font-bold tracking-wide">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
+                        <span>Empowering 1,200+ Special Needs Children</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+                        Give Wheels, Speech & Hope to <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-brand-500 to-warm-500">Every Child</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Every child deserves the chance to play, learn, and grow independent of physical or cognitive limits. Your contribution directly funds specialized wheelchairs, physical therapy, speech rehabilitation, and inclusive schooling.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                        <button onclick="scrollToSection('calculator')" class="inline-flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-brand-600/30 hover:scale-[1.02] transition-all">
+                            <span>Calculate & Donate Impact</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                        <a href="https://razorpay.me/@crocview" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-8 py-4 rounded-2xl border border-slate-200 shadow-sm hover:border-slate-300 transition-all">
+                            <i data-lucide="external-link" class="w-5 h-5 text-brand-600"></i>
+                            <span>Quick Pay Razorpay</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats Ribbon -->
+                    <div class="pt-8 border-t border-slate-200/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">100%</p>
+                            <p class="text-xs text-slate-500 font-medium">Direct Impact</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">80G</p>
+                            <p class="text-xs text-slate-500 font-medium">Tax Deductible</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">4,500+</p>
+                            <p class="text-xs text-slate-500 font-medium">Therapy Hours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-200/60 border border-slate-100 relative">
+                        <div class="absolute -top-4 -right-4 bg-warm-500 text-slate-900 text-xs font-black px-3 py-1.5 rounded-xl uppercase shadow-md flex items-center gap-1">
+                            <i data-lucide="flame" class="w-4 h-4"></i> Urgent Campaign
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="h-48 rounded-2xl overflow-hidden relative mb-4">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" alt="Child enjoying therapy" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                                    <span class="text-white text-sm font-semibold">Special Education & Wheelchair Drive 2026</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm font-semibold">
+                                    <span class="text-slate-600">Fund Goal: ₹15,000,000</span>
+                                    <span class="text-brand-600 font-bold">78% Reached</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-500 to-warm-500 h-full rounded-full w-[78%] transition-all duration-1000"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-slate-500 pt-1">
+                                    <span>Raised: ₹11,700,000</span>
+                                    <span>1,420 Donors</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Amounts Grid -->
+                        <div class="space-y-4">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Select Quick Support Amount</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="selectAmount(500)" class="amount-btn border-2 border-slate-200 hover:border-brand-500 py-2.5 rounded-xl font-bold text-slate-700 hover:text-brand-600 text-sm transition-all focus:ring-2 focus:ring-brand-500">₹500</button>
+                                <button onclick="selectAmount(1000)" class="amount-btn border-2 border-brand-500 bg-brand-50 text-brand-700 py-2.5 rounded-xl font-bold text-sm transition-all">₹1,000</button>
+                                <button onclick="selectAmount(2500)" class="amount-btn border-2 border-slate-200 hover:border-brand-500 py-2.5 rounded-xl font-bold text-slate-700 hover:text-brand-600 text-sm transition-all">₹2,500</button>
+                                <button onclick="selectAmount(5000)" class="amount-btn border-2 border-slate-200 hover:border-brand-500 py-2.5 rounded-xl font-bold text-slate-700 hover:text-brand-600 text-sm transition-all">₹5,000</button>
+                                <button onclick="selectAmount(10000)" class="amount-btn border-2 border-slate-200 hover:border-brand-500 py-2.5 rounded-xl font-bold text-slate-700 hover:text-brand-600 text-sm transition-all">₹10,000</button>
+                                <button onclick="focusCustomAmount()" class="border-2 border-slate-200 hover:border-brand-500 py-2.5 rounded-xl font-bold text-slate-500 hover:text-brand-600 text-sm transition-all">Custom</button>
+                            </div>
+
+                            <div id="customInputWrapper" class="hidden">
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-slate-400 font-bold">₹</span>
+                                    <input type="number" id="customAmountInput" placeholder="Enter custom amount" class="w-full pl-8 pr-4 py-2 border-2 border-brand-500 rounded-xl text-slate-800 font-bold focus:outline-none text-sm" min="100" oninput="updateImpactFromInput(this.value)">
+                                </div>
+                            </div>
+
+                            <div id="amountImpactBadge" class="bg-brand-50 border border-brand-100 p-3 rounded-xl text-xs text-brand-800 font-medium flex items-center gap-2">
+                                <i data-lucide="heart-pulse" class="w-4 h-4 text-brand-600 shrink-0"></i>
+                                <span id="amountImpactText">₹1,000 provides 1 full month of pediatric physical therapy.</span>
+                            </div>
+
+                            <button onclick="triggerRazorpayModal()" class="w-full bg-gradient-to-r from-warm-500 to-warm-600 hover:from-warm-600 hover:to-warm-600 text-slate-900 font-extrabold py-3.5 rounded-2xl shadow-lg shadow-warm-500/25 transition-all text-center flex items-center justify-center gap-2">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                <span>Proceed to Razorpay (₹<span id="btnAmountText">1000</span>)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Donation Calculator Section -->
+    <section id="calculator" class="py-16 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Live Impact Calculator</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">See How Far Your Gift Reaches</p>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">Slide to adjust your donation amount and see the tangible change you make in a child's everyday life.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm">
+                <div class="space-y-8">
+                    <!-- Slider Header -->
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-slate-200 pb-6">
+                        <div>
+                            <p class="text-sm font-semibold text-slate-500">Your Monthly or One-Time Support</p>
+                            <p class="text-4xl font-black text-brand-700" id="calcDisplayAmount">₹ 2,500</p>
+                        </div>
+                        <button onclick="triggerRazorpayModalWithCalc()" class="bg-brand-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-brand-700 shadow-md transition-all flex items-center gap-2">
+                            <span>Donate ₹<span id="calcBtnText">2,500</span> Now</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Range Slider -->
+                    <div>
+                        <input type="range" id="impactSlider" min="500" max="25000" step="500" value="2500" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                        <div class="flex justify-between text-xs text-slate-400 font-semibold mt-2">
+                            <span>₹500</span>
+                            <span>₹5,000</span>
+                            <span>₹10,000</span>
+                            <span>₹25,000+</span>
+                        </div>
+                    </div>
+
+                    <!-- Calculated Deliverables -->
+                    <div class="grid sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm text-center">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                            </div>
+                            <p class="text-2xl font-bold text-slate-800" id="calcSessions">2.5 Sessions</p>
+                            <p class="text-xs text-slate-500 mt-1">Specialized Physical / Speech Therapy</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm text-center">
+                            <div class="w-10 h-10 rounded-xl bg-warm-100 text-warm-600 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="utensils" class="w-5 h-5"></i>
+                            </div>
+                            <p class="text-2xl font-bold text-slate-800" id="calcMeals">50 Meals</p>
+                            <p class="text-xs text-slate-500 mt-1">High-Protein Therapeutic Nutrition</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm text-center">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <p class="text-2xl font-bold text-slate-800" id="calcKits">1 Adaptive Kit</p>
+                            <p class="text-xs text-slate-500 mt-1">Special Education Learning Materials</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs / Focus Areas -->
+    <section id="programs" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Our Key Initiatives</h2>
+                <h3 class="text-3xl font-extrabold text-slate-900">Transforming Lives Across 4 Key Pillars</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-brand-100 rounded-xl text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <i data-lucide="wheelchair" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Assistive Devices & Mobility</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Providing custom-fitted wheelchairs, leg braces, orthotics, and sensory equipment for paralyzed and CP children.</p>
+                    <a href="https://razorpay.me/@crocview" target="_blank" class="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-700 gap-1">
+                        <span>Fund Assistive Tech</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i data-lucide="brain" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Pediatric Rehabilitation</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Occupational, physical, and speech therapy conducted by certified specialists for autism and cerebral palsy.</p>
+                    <a href="https://razorpay.me/@crocview" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-700 gap-1">
+                        <span>Sponsor Therapy Sessions</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl text-amber-600 flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Inclusive Schooling</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Braille kits, auditory learning aids, and special educators to make mainstream education accessible.</p>
+                    <a href="https://razorpay.me/@crocview" target="_blank" class="inline-flex items-center text-xs font-bold text-amber-600 hover:text-amber-700 gap-1">
+                        <span>Sponsor Education</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Program 4 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-rose-100 rounded-xl text-rose-600 flex items-center justify-center mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors">
+                        <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Healthcare & Nutrition</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Corrective surgeries, specialized nutritional supplements, and emergency care for underprivileged families.</p>
+                    <a href="https://razorpay.me/@crocview" target="_blank" class="inline-flex items-center text-xs font-bold text-rose-600 hover:text-rose-700 gap-1">
+                        <span>Support Health Needs</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories & Filterable Campaigns Section -->
+    <section id="impact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Real Transformations</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900">Children Whose Lives Changed</h3>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 bg-slate-100 p-1.5 rounded-xl text-xs font-bold">
+                    <button onclick="filterStories('all')" class="story-tab active bg-white text-slate-900 px-4 py-2 rounded-lg shadow-sm">All Stories</button>
+                    <button onclick="filterStories('mobility')" class="story-tab text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg">Mobility</button>
+                    <button onclick="filterStories('therapy')" class="story-tab text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg">Therapy</button>
+                    <button onclick="filterStories('education')" class="story-tab text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg">Education</button>
+                </div>
+            </div>
+
+            <!-- Stories Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8" id="storiesGrid">
+                
+                <!-- Story 1 -->
+                <div class="story-card bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm flex flex-col" data-category="mobility">
+                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600" alt="Aarav" class="h-56 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 bg-brand-100 text-brand-700 rounded-md text-xs font-bold mb-3">Mobility Restored</span>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Aarav's First Wheelchair</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Born with spina bifida, Aarav couldn't attend school. Thanks to donors, his custom power wheelchair now lets him navigate his school independently.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-xs">9y</div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900">Aarav, Delhi</p>
+                                <p class="text-xs text-slate-500">Sponsored by 18 Donors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div class="story-card bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm flex flex-col" data-category="therapy">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600" alt="Ananya" class="h-56 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 bg-purple-100 text-purple-700 rounded-md text-xs font-bold mb-3">Speech Therapy</span>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Ananya Spoke Her First Word</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">After 8 months of non-verbal therapy with our specialists, 6-year-old Ananya called her mother "Maa" for the very first time.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs">6y</div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900">Ananya, Mumbai</p>
+                                <p class="text-xs text-slate-500">Sponsored by 24 Donors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div class="story-card bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm flex flex-col" data-category="education">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" alt="Rohan" class="h-56 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 bg-warm-100 text-warm-700 rounded-md text-xs font-bold mb-3">Inclusive School</span>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Rohan Top of His Class</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Visually impaired since birth, Rohan received Braille learning kits & audio software. Today he tops his 5th-grade mathematics exam.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-warm-600 text-white flex items-center justify-center font-bold text-xs">11y</div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900">Rohan, Bengaluru</p>
+                                <p class="text-xs text-slate-500">Sponsored by 31 Donors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency, Trust & Financial Breakdown -->
+    <section id="transparency" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-400 font-bold text-xs uppercase tracking-widest block mb-2">Accountability First</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Where Every Rupee Goes</h2>
+                <p class="text-slate-400 text-sm mt-3">We adhere to the highest international standards of NGO financial disclosure and audit practices.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Financial Pie Chart -->
+                <div class="lg:col-span-6 bg-slate-800/80 p-8 rounded-3xl border border-slate-700">
+                    <h3 class="text-lg font-bold mb-4 text-slate-200 text-center">2025-2026 Fund Utilization</h3>
+                    <div class="max-w-xs mx-auto">
+                        <canvas id="transparencyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Financial Highlights and Badges -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-2xl shrink-0">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white">80G Tax Exemption Guaranteed</h4>
+                            <p class="text-slate-400 text-sm mt-1">Get up to 50% tax deduction on all contributions under Section 80G of the Indian Income Tax Act. Tax certificate emailed automatically.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-warm-500/10 border border-warm-500/20 text-warm-400 rounded-2xl shrink-0">
+                            <i data-lucide="lock" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white">Razorpay Safe Payment Gateway</h4>
+                            <p class="text-slate-400 text-sm mt-1">Transactions are protected with 256-bit SSL encryption. We accept UPI, Credit/Debit Cards, NetBanking, and Wallets via Razorpay.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-2xl shrink-0">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white">Quarterly Audit Reports</h4>
+                            <p class="text-slate-400 text-sm mt-1">All donors receive transparent quarterly reports with photo updates and financial spending details of the supported child.</p>
+                        </div>
+                    </div>
+
+                    <!-- Verified Trust Badges -->
+                    <div class="pt-6 border-t border-slate-800 flex flex-wrap items-center gap-6">
+                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Verified By:</div>
+                        <div class="flex gap-4 opacity-80 text-xs font-bold text-slate-300">
+                            <span class="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">ISO 9001:2015</span>
+                            <span class="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">GuideStar Platinum</span>
+                            <span class="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">NITI Aayog Registered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Direct Razorpay Quick Pay & QR Code Section -->
+    <section class="py-20 bg-gradient-to-br from-brand-50 to-warm-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl border border-brand-200/80 shadow-xl p-8 sm:p-12">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-bold">
+                            <i data-lucide="zap" class="w-4 h-4 text-brand-600"></i>
+                            <span>Fast & Direct Donation</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Donate directly via Razorpay Page</h2>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Prefer to complete your transaction on Razorpay's official checkout page? Click below to navigate directly to our verified payment link: <code class="bg-slate-100 px-2 py-1 rounded text-brand-700 font-mono text-xs">https://razorpay.me/@crocview</code>
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="https://razorpay.me/@crocview" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-brand-500/25 transition-all text-base">
+                                <span>Go to Razorpay Handle (@crocview)</span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                            </a>
+                            <button onclick="openDonateModal()" class="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-4 rounded-2xl transition-all text-base">
+                                <i data-lucide="qr-code" class="w-5 h-5"></i>
+                                <span>Scan & Pay Modal</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Simulated Quick QR Code -->
+                    <div class="lg:col-span-5 flex flex-col items-center justify-center bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center">
+                        <div class="bg-white p-4 rounded-2xl shadow-md border border-slate-200 mb-4">
+                            <!-- Dynamic QR Code SVG pointing to razorpay link -->
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://razorpay.me/@crocview" alt="Razorpay QR Code" class="w-44 h-44 mx-auto rounded-lg">
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Scan with GPay, PhonePe, Paytm or Any UPI App</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Directly redirects to Razorpay Handle @crocview</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Got Questions?</h2>
+                <h3 class="text-3xl font-extrabold text-slate-900">Frequently Asked Questions</h3>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50">
+                        <span>How do I receive my 80G Tax Exemption Certificate?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                        Once you complete your payment on Razorpay, you will receive an automated email containing your official tax receipt along with 80G details. Please ensure you provide your correct PAN card number during payment checkout.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50">
+                        <span>Is my payment safe on https://razorpay.me/@crocview?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                        Yes, absolutely. Razorpay is India's leading PCI-DSS compliant payment gateway. All transactions utilize 256-bit SSL encryption, guaranteeing your bank details and personal information remain completely secure.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50">
+                        <span>Can foreign citizens donate?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                        We accept international credit and debit cards through our FCRA-registered Razorpay portal. Ensure your card has international transactions enabled.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50">
+                        <span>Can I visit the rehabilitation center or meet the children?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                        Yes! Donors are welcome to visit our special needs centers with prior appointment. You can schedule a visit by contacting our support team at support@hopeforabilities.org.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact Section -->
+    <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 pb-12 border-b border-slate-800">
+                
+                <!-- Footer Left -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 text-slate-950 flex items-center justify-center font-bold">
+                            <i data-lucide="heart" class="w-5 h-5 fill-slate-950"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">HopeForAbilities Foundation</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        A registered non-profit organization dedicated to empowering children with disabilities through assistive technology, therapy, and inclusive education.
+                    </p>
+                    <div class="pt-2 text-xs text-slate-500">
+                        <p>Registration No: NGO-80G-2021-998234</p>
+                        <p>DARPAN ID: IN/2021/0298112</p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="lg:col-span-3 space-y-3">
+                    <p class="text-white font-bold text-sm uppercase tracking-wider">Quick Links</p>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#about" class="hover:text-brand-400 transition-colors">About Us</a></li>
+                        <li><a href="#programs" class="hover:text-brand-400 transition-colors">Our Programs</a></li>
+                        <li><a href="#transparency" class="hover:text-brand-400 transition-colors">Financial Reports</a></li>
+                        <li><a href="https://razorpay.me/@crocview" target="_blank" class="hover:text-brand-400 transition-colors">Razorpay Payment Gateway</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-4 space-y-3">
+                    <p class="text-white font-bold text-sm uppercase tracking-wider">Contact Us</p>
+                    <div class="space-y-2 text-sm text-slate-400">
+                        <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-brand-400"></i> support@hopeforabilities.org</p>
+                        <p class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-brand-400"></i> +91 (0) 800-425-8890</p>
+                        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-400"></i> Center for Child Care, Sector 14, New Delhi, India</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>© 2026 HopeForAbilities Foundation. All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400">Terms of Service</a>
+                    <a href="https://razorpay.me/@crocview" target="_blank" class="hover:text-slate-400">Razorpay @crocview</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal Popup -->
+    <div id="donateModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 hidden transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative overflow-hidden transform transition-all scale-95" id="modalContainer">
+            <!-- Close Button -->
+            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-900">Complete Your Contribution</h3>
+                <p class="text-xs text-slate-500 mt-1">You are supporting disabled children via secure Razorpay payment.</p>
+            </div>
+
+            <!-- Modal Content details -->
+            <div class="space-y-4">
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <div class="flex justify-between items-center text-sm font-bold text-slate-800">
+                        <span>Selected Amount:</span>
+                        <span class="text-brand-600 text-lg" id="modalAmountDisplay">₹1,000</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1" id="modalImpactDisplay">Provides physical therapy & nutritional support for a child.</p>
+                </div>
+
+                <!-- Instructions -->
+                <div class="space-y-2 text-xs text-slate-600">
+                    <p class="font-bold text-slate-700">How payment works:</p>
+                    <ol class="list-decimal list-inside space-y-1">
+                        <li>Click <strong>"Open Razorpay Payment Page"</strong> below.</li>
+                        <li>Enter your details (Name, PAN for 80G tax receipt).</li>
+                        <li>Pay with UPI, Credit/Debit Card, or NetBanking.</li>
+                    </ol>
+                </div>
+
+                <!-- Modal CTA -->
+                <a id="modalRazorpayLink" href="https://razorpay.me/@crocview" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-extrabold py-4 rounded-2xl shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 transition-all">
+                    <span>Open Razorpay (@crocview)</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+
+                <button onclick="closeDonateModal()" class="w-full py-2.5 text-xs text-slate-500 font-bold hover:text-slate-700">
+                    Cancel and Return
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables for amount tracking
+        let selectedAmount = 1000;
+
+        // Initialize Lucide Icons & Chart.js on load
+        window.onload = function() {
+            lucide.createIcons();
+            initChart();
+            setupMobileMenu();
+            updateImpactFromInput(1000);
+        };
+
+        // Toggle Mobile Menu
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // Quick Amount Selector in Hero
+        function selectAmount(amount) {
+            selectedAmount = amount;
+            document.getElementById('customInputWrapper').classList.add('hidden');
+            document.getElementById('btnAmountText').innerText = amount.toLocaleString('en-IN');
+            
+            // Highlight buttons
+            const btns = document.querySelectorAll('.amount-btn');
+            btns.forEach(b => {
+                b.classList.remove('border-brand-500', 'bg-brand-50', 'text-brand-700');
+                b.classList.add('border-slate-200', 'text-slate-700');
+            });
+            event.currentTarget.classList.add('border-brand-500', 'bg-brand-50', 'text-brand-700');
+            event.currentTarget.classList.remove('border-slate-200');
+
+            updateImpactText(amount);
+        }
+
+        function focusCustomAmount() {
+            document.getElementById('customInputWrapper').classList.remove('hidden');
+            document.getElementById('customAmountInput').focus();
+        }
+
+        function updateImpactFromInput(val) {
+            const num = parseInt(val) || 0;
+            selectedAmount = num;
+            document.getElementById('btnAmountText').innerText = num.toLocaleString('en-IN');
+            updateImpactText(num);
+        }
+
+        function updateImpactText(amount) {
+            const impactEl = document.getElementById('amountImpactText');
+            if (amount < 1000) {
+                impactEl.innerText = `₹${amount} provides specialized high-nutrition meal kits for 1 week.`;
+            } else if (amount < 2500) {
+                impactEl.innerText = `₹${amount.toLocaleString('en-IN')} provides 1 full month of pediatric physical therapy.`;
+            } else if (amount < 5000) {
+                impactEl.innerText = `₹${amount.toLocaleString('en-IN')} provides sensory integration learning kits & adaptive tools.`;
+            } else {
+                impactEl.innerText = `₹${amount.toLocaleString('en-IN')} helps sponsor a custom-fitted wheelchair or leg brace.`;
+            }
+        }
+
+        // Live Impact Calculator Handler
+        const slider = document.getElementById('impactSlider');
+        if (slider) {
+            slider.addEventListener('input', function(e) {
+                const val = parseInt(e.target.value);
+                document.getElementById('calcDisplayAmount').innerText = `₹ ${val.toLocaleString('en-IN')}`;
+                document.getElementById('calcBtnText').innerText = val.toLocaleString('en-IN');
+
+                // Dynamic calculations
+                const sessions = (val / 1000).toFixed(1);
+                const meals = Math.floor(val / 50);
+                const kits = Math.floor(val / 2500);
+
+                document.getElementById('calcSessions').innerText = `${sessions} Sessions`;
+                document.getElementById('calcMeals').innerText = `${meals} Meals`;
+                document.getElementById('calcKits').innerText = `${kits > 0 ? kits : '1'} Adaptive Kit`;
+            });
+        }
+
+        function triggerRazorpayModalWithCalc() {
+            const calcVal = parseInt(document.getElementById('impactSlider').value);
+            selectedAmount = calcVal;
+            openDonateModal();
+        }
+
+        function triggerRazorpayModal() {
+            openDonateModal();
+        }
+
+        // Modal Logic
+        function openDonateModal() {
+            const modal = document.getElementById('donateModal');
+            document.getElementById('modalAmountDisplay').innerText = `₹${selectedAmount.toLocaleString('en-IN')}`;
+            document.getElementById('modalImpactDisplay').innerText = document.getElementById('amountImpactText').innerText;
+            
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeDonateModal() {
+            const modal = document.getElementById('donateModal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        // Filterable Stories
+        function filterStories(category) {
+            const cards = document.querySelectorAll('.story-card');
+            const tabs = document.querySelectorAll('.story-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                tab.classList.add('text-slate-600');
+            });
+            event.currentTarget.classList.add('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Scroll Helper
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Chart.js Transparency Breakdown
+        function initChart() {
+            const ctx = document.getElementById('transparencyChart');
+            if (!ctx) return;
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Therapy & Medical Care', 'Assistive Devices', 'Inclusive Education', 'Admin & Operations'],
+                    datasets: [{
+                        data: [45, 30, 17, 8],
+                        backgroundColor: ['#14b8a6', '#f59e0b', '#8b5cf6', '#64748b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#94a3b8',
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+    </script>
+</body>
+</html>
